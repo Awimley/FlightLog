@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0') 
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css') 
+    .navbar.navbar-default.navbar-fixed-top
+      .container.span
+        .navbar-header
+          a.navbar-brand(href='/') N562D Tracking Application
+          button.navbar-toggle(type='button', data-toggle='collapse', datatarget='#navbar-main')
+            span.icon-bar 
+            span.icon-bar 
+
+          #navbar-main.navbar-collapse.collapse 
+            ul.nav.navbar-nav 
+              li 
+                a(href='/loglist') Logs
+            ul.nav.navbar-nav.pull-right
+              li 
+                a(href='/logadd') Log a flight
+  .container
+    block content
+    
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+script(src='/bootstrap/js/bootstrap.min.js')

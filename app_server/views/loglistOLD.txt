@@ -1,0 +1,16 @@
+extends layout
+block content
+   h2= title
+   h3 Date  Hobbs Out   Hobbs In Hours    Fuel  Fuel/Hour
+   - var fuelUsed = 0, hoursFlown=0, fuelHour=0, lastOilChange=0, fltDate="";
+   for flt in flights
+      - hobbsOut = flt.hobbs_out.toFixed(1);
+      - hobbsIn = flt.hobbs_in.toFixed(1);
+      - fuelUsed = (flt.fuel_out - flt.fuel_in + flt.fuel_purch).toFixed(1);
+      - hoursFlown = (flt.hobbs_in - flt.hobbs_out).toFixed(1);
+      - fuelHour = (fuelUsed / hoursFlown).toFixed(1);
+      - fltDate = flt.flt_date.substring(0,10);
+      - fuelIn = flt.fuel_in.toFixed(1);
+      - if(flt.oil_change == 1){lastOilChange = flt.hobbs_out};
+      - hoursLastOilChange = (flt.hobbs_in - lastOilChange).toFixed(1);
+      p #{fltDate} Hobbs out: #{hobbsOut}  Hobbs in: #{hobbsIn} Hours: #{hoursFlown} Fuel: #{fuelUsed} perHour: #{fuelHour} Fuel In: #{fuelIn} Last Chng #{lastOilChange} Hours Since #{hoursLastOilChange}

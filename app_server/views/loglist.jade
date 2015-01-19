@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  br
+  br
+  br
+  br
+  br
+  br
+  .row
+    .content
+      table.table.table-striped
+        thead
+          tr
+            th Date
+            th Hobbs In
+            th Hobbs Out
+            th Hours Flown
+            th Fuel Used / hr
+            th Fuel Remaining
+            th Hours Since Oil Change
+            th Oil Change?
+            th Delete
+        tbody
+          - var id
+          - for flt in flights
+            - hobbsIn = flt.hobbs_out.toFixed(1);
+            - hobbsOut = flt.hobbs_in.toFixed(1);
+            - fuelUsed = (flt.fuel_out - flt.fuel_in + flt.fuel_purch).toFixed(1);
+            - hoursFlown = (flt.hobbs_in - flt.hobbs_out).toFixed(1);
+            - fuelHour = (fuelUsed / hoursFlown).toFixed(1);
+            - fltDate = flt.flt_date.substring(0,10);
+            - fuelIn = flt.fuel_in.toFixed(1);
+            - if(flt.oil_change == 1){lastOilChange = flt.hobbs_out};
+            - hoursLastOilChange = (flt.hobbs_in - lastOilChange).toFixed(1);
+            - id = flt.id
+            tr
+              td #{fltDate}
+              td #{hobbsIn}
+              td #{hobbsOut}
+              td #{hoursFlown}
+              td #{fuelHour}
+              td #{fuelIn}
+              td #{hoursLastOilChange}
+              td #{flt.oil_change}
+              td
+                a(href='/logdelete/#{id}') Delete
+  footer.text-center
+    .row
+      .col-xs-16
+        small &copy; Andrew Wimley 2015
+//- for flt in flights
+      - hobbsOut = flt.hobbs_out.toFixed(1);
+      - hobbsIn = flt.hobbs_in.toFixed(1);
+      - fuelUsed = (flt.fuel_out - flt.fuel_in + flt.fuel_purch).toFixed(1);
+      - hoursFlown = (flt.hobbs_in - flt.hobbs_out).toFixed(1);
+      - fuelHour = (fuelUsed / hoursFlown).toFixed(1);
+      - fltDate = flt.flt_date.substring(0,10);
+      - fuelIn = flt.fuel_in.toFixed(1);
+      - if(flt.oil_change == 1){lastOilChange = flt.hobbs_out};
+      - hoursLastOilChange = (flt.hobbs_in - lastOilChange).toFixed(1);
+      p #{fltDate} Hobbs out: #{hobbsOut}  Hobbs in: #{hobbsIn} Hours: #{hoursFlown} Fuel: #{fuelUsed} perHour: #{fuelHour} Fuel In: #{fuelIn} Last Chng #{lastOilChange} Hours Since #{hoursLastOilChange}

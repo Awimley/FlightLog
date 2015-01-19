@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  br
+  br
+  br
+  br
+  br
+  div.text-center
+    h1 N562D tracking application
+    p login here?
+  
+              
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+script(src='/bootstrap/js/bootstrap.min.js')

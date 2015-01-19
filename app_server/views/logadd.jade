@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  br
+  br
+  br
+  .row.page-header
+    .col-lg-16
+      h1 Add a N562D Flight
+  .row.col-sm-16
+    form(action='/logadd',method='post')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='HobbsOut') HobbsOut &nbsp &nbsp &nbsp
+             input(id='HobbsOut',type='text',value='',placeholder='hobbs in generated',name='HobbsOut')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='FlightDate') FlightDate &nbsp &nbsp &nbsp
+             input(id='FlightDate',type='text',value='',placeholder='',name='FlightDate')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='FuelOut') FuelOut &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+             input(id='FuelOut',type='text',value='',placeholder='',name='FuelOut')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='FuelIn') FuelIn &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+             input(id='FuelIn',type='text',value='',placeholder='',name='FuelIn')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='FuelPurch') FuelPurch &nbsp &nbsp &nbsp
+             input(id='FuelPurch',type='text',value='',placeholder='',name='FuelPurch')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='FuelCost') FuelCost &nbsp &nbsp &nbsp &nbsp &nbsp
+             input(id='FuelCost',type='text',value='',placeholder='',name='FuelCost')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='OilAdded') OilAdded &nbsp &nbsp &nbsp 
+             input(id='OilAdded',type='text',value='',placeholder='',name='OilAdded')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='OilDipstick') OilDipstick &nbsp  
+             input(id='OilDipstick',type='text',value='',placeholder='',name='OilDipstick')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='OilChange') OilChange &nbsp &nbsp
+             input(id='OilChange',type='text',value='',placeholder='',name='OilChange')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='Comment') Comment &nbsp &nbsp &nbsp
+             input(id='Comment',type='text',value='',placeholder='',name='Comment')
