@@ -1,0 +1,20 @@
+<navigation></navigation>
+
+<div class="container">
+  <page-header content="vm.pageHeader"></page-header>
+  <div role="alert" ng-show="!vm.data" class="alert alert-success text-center"><h3>Loading...</h3></div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <a ng-click="vm.popupAddForm()" class="btn btn-default">Add a flight</a>
+      <div>
+      <h3> Most recent flight: {{ vm.data.flight.fltDate }}</h3>
+      <h3> Current Hobbs: {{ vm.data.flight.hobbsIn }}</h3>
+      <h3> Current Fuel: {{ vm.data.flight.fuelIn }} Quarts</h3>
+      <h3> Hours Since Last Oil Change: {{ vm.data.flight.hoursLastOilChange }}</h3>
+      <h3>Last Inspection Date: 
+        <a class="btn btn-default"> DATE HERE </a>
+      </h3>
+    </div>
+  <footer-generic></footer-generic>
+  </div>
+</div>
