@@ -4,6 +4,8 @@ var path = require('path');
 var UglifyJS = require('uglify-js');
 var fs = require('fs');
 var app = express();
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -42,6 +44,7 @@ fs.writeFile('public/angular/n562d.min.js', uglified.code, function (err){
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
+//app.use('/', expressJwt({ secret : 'secret' }));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());

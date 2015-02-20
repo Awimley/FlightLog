@@ -7,6 +7,7 @@
   homeCtrl.$inject = ['$modal', '$scope', 'flightData', '$log'];
   function homeCtrl ($modal, $scope, flightData, $log) {
     var vm = this;
+    vm.lastInspection = 'December 2015';
     vm.pageHeader = {
       title : 'N562D App (angular edition!)',
       strapline: 'Have a nice flight!'
@@ -49,6 +50,10 @@
         });
       });
     };
+    vm.popupLogin = function () {
+      //DO LOGIN
+    };
+
   }
 })();
 
