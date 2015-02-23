@@ -41,10 +41,10 @@
             }
           }
         });
-        modalInstance.result.then(function (d) {
+        modalInstance.result.then(function (data) {
           flightData.flightData()
-          .success(function (d) {
-            vm.data = {flights : d.reverse()};
+          .success(function (data) {
+            vm.data = {flights : data.reverse()};
           })
           .error(function (e) {
             $log.debug(e);
@@ -72,8 +72,8 @@
       });
       modalInstance.result.then(function () {
         flightData.flightData()
-        .success(function (d) {
-          vm.data = {flights : d.reverse()};
+        .success(function (data) {
+          vm.data = {flights : data.reverse()};
         })
         .error(function (e) {
           $log.debug(e);
