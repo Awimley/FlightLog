@@ -6,7 +6,12 @@ config.$inject = ['$routeProvider', '$locationProvider'];
 function config ($routeProvider, $locationProvider) {
 
   $routeProvider 
-    .when('/', {
+  .when('/', {
+      templateUrl: 'login/login.view.html',
+      controller: 'loginCtrl',
+      controllerAs: 'vm'
+    })
+    .when('/home', {
       templateUrl: 'home/home.view.html',
       controller: 'homeCtrl',
       controllerAs: 'vm'
@@ -20,7 +25,7 @@ function config ($routeProvider, $locationProvider) {
 
     //remove gnarly /#/ from html route
     $locationProvider.html5Mode(true);
-}
+  }
 
 angular
   .module('flightApp')

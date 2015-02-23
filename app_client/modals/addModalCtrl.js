@@ -28,7 +28,7 @@
     vm.doAdd = function (data) {
       flightData.addFlight(data)
       .success(function(data) {
-        vm.modal.close(data);
+        vm.modal.close();
       })
       .error(function (data) {
         vm.formError = "Oops, something went wrong! Try again."

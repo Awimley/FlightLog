@@ -10,10 +10,11 @@
     vm.lastInspection = 'December 2015';
     vm.pageHeader = {
       title : 'N562D App (angular edition!)',
-      strapline: 'Have a nice flight!'
+      strapline: ''
     };
-    //API calls are cool
-   flightData.flightData()
+
+   //API calls are cool
+  flightData.flightData()
     .success(function (data) {
       vm.data = {flight : data[data.length -1]};
       $log.debug(vm.data.flight)
@@ -27,6 +28,7 @@
     date = date.toISOString();
     date = date.slice(5,7) + '/' + date.slice(8,10) + '/' + date.slice(2,4);
 
+    //for adding flights
     vm.popupAddForm = function () {
       var modalInstance = $modal.open ({
         templateUrl : '/modals/addModal.view.html',
@@ -50,9 +52,8 @@
         });
       });
     };
-    vm.popupLogin = function () {
-      //DO LOGIN
-    };
+
+      
 
   }
 })();

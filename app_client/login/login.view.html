@@ -1,0 +1,22 @@
+<navigation></navigation>
+
+<div class="container">
+  <page-header content="vm.pageHeader"></page-header>
+  <form id="login" name="login" role="form" ng-submit="vm.login()" class="form-horizontal" novalidate>
+    <div class="form-group">
+      <label for="user" class="col-xs-2 col-sm-2 control-label">Username :</label>
+      <div class="col-xs-10 col-sm-10">
+        <input id="user" name="user" ng-model="vm.data.user" class="form-control"/> 
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-xs-2 col-sm-2 control-label">Password:</label>
+      <div class="col-xs-10 col-sm-10">
+        <input id="password" name="password" ng-model="vm.data.flt_date" class="form-control"/> 
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">navigation will be removed when login is active</button>
+    </div>
+    
+  </form>

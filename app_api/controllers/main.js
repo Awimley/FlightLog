@@ -100,7 +100,6 @@ var flights = []
     };
     sendJsonResponse(res, 200, flights);
   });
-  console.log(flights);
   return flights;
 };
 

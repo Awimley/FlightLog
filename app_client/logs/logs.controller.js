@@ -12,6 +12,7 @@
     var date = new Date();
     date = date.toISOString();
     date = date.slice(5,7) + '/' + date.slice(8,10) + '/' + date.slice(2,4);
+
     vm.pageHeader = {
       title: 'Logs',
       strapline: date
@@ -40,10 +41,10 @@
             }
           }
         });
-        modalInstance.result.then(function (data) {
+        modalInstance.result.then(function (d) {
           flightData.flightData()
-          .success(function (data) {
-            vm.data = {flights : data.reverse()};
+          .success(function (d) {
+            vm.data = {flights : d.reverse()};
           })
           .error(function (e) {
             $log.debug(e);
@@ -54,5 +55,31 @@
         $log.debug(err);
       })
     };
+
+    //Add form from navigation directive
+    vm.popupAddForm = function () {
+      var modalInstance = $modal.open ({
+        templateUrl : '/modals/addModal.view.html',
+        controller : 'addModalCtrl as vm',
+        resolve : {
+          flight : function () {
+            return {
+              flt_date : date,
+              hobbs_out : vm.data.flights[0].hobbsIn
+            };
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+        flightData.flightData()
+        .success(function (d) {
+          vm.data = {flights : d.reverse()};
+        })
+        .error(function (e) {
+          $log.debug(e);
+        });
+      });
+    };
+
   }
 })();
