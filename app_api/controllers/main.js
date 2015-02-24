@@ -187,7 +187,7 @@ module.exports.verifyUser = function (req, res) {
         }
         return false;
       });
-    } catch (TypeError) { //if there was a type error token is empty, verify fails
+    } catch (err) { //if there was a type error token is empty, verify fails
       return false;
     }
   });

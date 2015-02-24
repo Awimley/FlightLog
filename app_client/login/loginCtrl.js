@@ -25,7 +25,6 @@
           $location.url("home");
           $log.debug(response);
         }
-        
       })
       .error(function (err) {
         console.log(err);
@@ -47,7 +46,8 @@
           localStorageService.cookie.set('token', vm.res);
         });
     };
-
-    vm.verifyUser();
+    if (vm.data) {
+      vm.verifyUser();
+    }
   }
 })();
