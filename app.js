@@ -6,33 +6,6 @@ var fs = require('fs');
 var app = express();
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
-var token = jwt.sign({
-  user : 'psloss', 
-  password : 'lowsec15'
-}, 'secret');
-console.log(token);
-
-//Login routes, success delivers angular SPA
-/*app.get('/', function (req, res) {
-  res.render('index.jade', {
-    title : "n562d", 
-    strapline : "Please Log In"
-  })
-});
-
-app.get('/login', function (req, res) {
-  res.redirect('/#/home')
-});*/
-
-
-
-jwt.verify(token, 'secret', function(err, decoded) {
-  if (err) {
-    console.log(err);
-  }
-  console.log(decoded);
-  return 0;
-});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -48,7 +21,6 @@ var appClientFiles = [
   'app_client/modals/updateModalCtrl.js',
   'app_client/modals/addModalCtrl.js',
   'app_client/login/loginCtrl.js',
-
   //Services
   'app_client/common/services/flightData.service.js', 
   //Filters
@@ -57,7 +29,9 @@ var appClientFiles = [
   //Directives
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
-  'app_client/common/directives/pageHeader/pageHeader.directive.js'
+  'app_client/common/directives/pageHeader/pageHeader.directive.js',
+  //External modules
+  'app_client/lib/angular-local-storage.js'
 ];
 
 //MINIFY scripts.

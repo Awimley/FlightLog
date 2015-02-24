@@ -1,9 +1,9 @@
 (function () {
   
-angular.module('flightApp',['ngRoute', 'ngSanitize', 'ui.bootstrap']);
+angular.module('flightApp',['ngRoute', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule']);
 
-config.$inject = ['$routeProvider', '$locationProvider'];
-function config ($routeProvider, $locationProvider) {
+config.$inject = ['$routeProvider', '$locationProvider', 'localStorageServiceProvider'];
+function config ($routeProvider, $locationProvider, localStorageServiceProvider) {
 
   $routeProvider 
   .when('/', {
@@ -25,9 +25,13 @@ function config ($routeProvider, $locationProvider) {
 
     //remove gnarly /#/ from html route
     $locationProvider.html5Mode(true);
+
+    //Configure local storage
+    localStorageServiceProvider
+      .setStorageType('localStorage');
   }
 
 angular
   .module('flightApp')
-  .config(['$routeProvider', '$locationProvider', config]);
+  .config(['$routeProvider', '$locationProvider', 'localStorageServiceProvider', config]);
 })();

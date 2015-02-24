@@ -3,8 +3,8 @@
     .module('flightApp')
     .service('flightData', flightData);
 
-  flightData.$inject = [ '$http'];
-  function flightData ( $http) {
+  flightData.$inject = [ '$http', '$log'];
+  function flightData ( $http, $log) {
 
     var undToZero = function(data) {
       data.hobbs_in = data.hobbs_in || 0;
@@ -13,7 +13,7 @@
       data.fuel_cost = data.fuel_cost || 0;
       data.oil_added = data.oil_added || 0;
       data.oil_dipstick = data.oil_dipstick || 0;
-      data.comment = data.comment || 0;
+      data.comment = data.comment || null;
       data.oil_change = data.oil_change || 0;
       return data;
     };
@@ -57,12 +57,42 @@
       }
     };
 
+    var tryLogin = function (user, pass) {
+      var data = {
+        user : user,
+        password : pass
+      }
+      var config = {
+        headers : {
+          'Content-type' : 'application/json'
+        } 
+      };
+
+      return $http.post('/login', data, config);
+    };
+
+    var verifyUser = function (data) {
+      var data = {
+        user : data.user,
+        token : data.token
+      };
+      var config = {
+        headers : {
+          'Content-type' : 'application/json'
+        } 
+      };
+
+      return $http.post('/verifyUser', data, config);
+    };
+
     return {
       flightData : getData,
       flight : findOne,
       addFlight : addFlight,
       deleteFlight : deleteFlight,
-      updateFlight : updateFlight
+      updateFlight : updateFlight,
+      tryLogin : tryLogin,
+      verifyUser : verifyUser
     };
   }
 })();

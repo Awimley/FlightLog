@@ -3,6 +3,8 @@ var db = require('../../app_server/models/db');
 var Flight = require('../../app_server/models/flight');
 var User = require('../../app_server/models/user');
 var logs = [];
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 var findMostRecent = function (callback) {
     Flight.find().sort({hobbs_in: -1}).limit(1).exec(callback);
 };
@@ -11,6 +13,8 @@ var sendJsonResponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
+
+//CRUD=============================================================================================================================================
 
 module.exports.addFlight = function (req, res) {
   var priorFlight, thisFlight, id, flt_date, hobbs_out, hobbs_in, fuel_out, fuel_in, fuel_purch, fuel_cost, oil_added, oil_dipstick, oil_change, comment;
@@ -121,3 +125,71 @@ module.exports.findOne = function (req, res) {
   });
   console.log(req.params.id);
 };
+
+//AUTHENTICATION==========================================================================================================================
+
+module.exports.tryLogin = function (req, res) {
+  //credentials in req.body
+  var username,
+      token = {},
+      response = {
+        message : '',
+        user : '',
+        token : {}
+      };
+
+  User.findOne({ user : req.body.user}, function (err, user) {
+    if (err) { 
+      console.log(err);
+      sendJsonResponse(res, 400, err);
+    }
+    if ( !user ) {
+      response.message = 'User not found!';
+      sendJsonResponse(res, 404, response);
+      return response;
+    }
+    if (user.password === req.body.password) {
+      //Success! (we found a user and the passwords match.)
+      response.token = jwt.sign({
+        user : user.user, 
+        password : user.password,
+        exp : Date.now() + 2629000000
+        }, 'mysecret');
+      response.user = user.user;
+      sendJsonResponse(res, 201, response);
+      return response;
+    }
+    response.message = 'User or password invalid, try again!';
+    sendJsonResponse(res, 401, response);
+    return response;
+  });
+};
+
+module.exports.verifyUser = function (req, res) {
+  User.findOne({ user : req.body.user}, function (err, user) {
+    var response = false;
+    //Returns true or false
+    if (err) { 
+      console.log(err);
+      return 1;
+    }
+    console.log(req.body.token);
+    //token is req.body.token, VERIFY
+    try {
+      jwt.verify(req.body.token, 'mysecret', function(err, decoded) {
+        if (err) {
+          console.log(err);
+        }
+        if (decoded.user === user.user && decoded.password === user.password ) {
+          console.log('success!');
+          sendJsonResponse(res, 200, true);
+          return true;
+        }
+        return false;
+      });
+    } catch (TypeError) { //if there was a type error token is empty, verify fails
+      return false;
+    }
+  });
+};
+

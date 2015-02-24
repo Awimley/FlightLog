@@ -3,13 +3,16 @@ var api = require('../controllers/main');
 
 //API ROUTES
 module.exports = function(app){
-    //CREATE=========================================================
+    //CREATE========================================================= C
     app.post('/logadd', api.addFlight);
-    //UPDATE=========================================================
-    app.put('/logupdate/:id', api.updateFlight);
-    //READ===========================================================
+    //READ=========================================================== R
     app.get('/loglist', api.getLogs);    
     app.get('/findone/:id', api.findOne);
-    //DELETE=========================================================
+    //UPDATE========================================================= U
+    app.put('/logupdate/:id', api.updateFlight);
+    //DELETE========================================================= D
     app.get('/logupdate/delete/:id', api.deleteFlight);
+    //AUTHENTICATION
+    app.post('/login', api.tryLogin);
+    app.post('/verifyUser', api.verifyUser);
 };

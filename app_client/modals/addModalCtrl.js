@@ -19,7 +19,6 @@
         vm.formError = "";
 
         $log.debug(vm.data);
-        console.log(Object.keys(vm.data).length);
         vm.doAdd(vm.data);
         vm.modal.close();
       }
