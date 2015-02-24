@@ -3,30 +3,43 @@
 <div class="container">
   <page-header content="vm.pageHeader"></page-header>
   <div role="alert" ng-show="!vm.data" class="alert alert-success text-center"><h3>Loading...</h3></div>
-    <div class="row" ng-show="vm.data">
-      <div class="col-xs-2 pull-left"></div>
-      <div class="col-xs-2 pull-right"></div>
-      <div ng-init="mod = 0" class="col-xs-8 text-center">
-        <div class="col-xs-6 pull-left"><p class="pull-right"> Most recent flight : </p></div><div class="col-xs-6 pull-right"><p class="pull-left">{{ vm.data.flight.fltDate }}</p></div>
-        <div class="col-xs-6 pull-left"><p class="pull-right"> Current Hobbs : </p></div><div class="col-xs-6"><p class="pull-left">{{ vm.data.flight.hobbsIn }}</p></div>
-        <div class="col-xs-6 pull-left"><p class="pull-right"> Current Fuel : </p></div><div class="col-xs-6"><p class="pull-left">{{ vm.data.flight.fuelIn }} Quarts</p></div>
-        <div class="col-xs-6 pull-left"><p class="pull-right"> Hours Since Last Oil Change : </p></div><div class="col-xs-6"><p class="pull-left">{{ vm.data.flight.hoursLastOilChange }} hours</p></div>
-        <div class="col-xs-6 pull-left" ng-show="mod == 0"><p class="pull-right"> Last Inspection Date : </p></div>
-        <div class="col-xs-6"  ng-show="mod == 0">
-          <p class="pull-left">
-            <a class="btn btn-default" ng-click="mod = 1">{{ vm.lastInspection }}</a>
-          </p>
-        </div>
 
-        <div class="col-xs-6">
-          <a class="btn btn-default pull-right" ng-click="mod=0" ng-show="mod == 1">Update Inspection Date : </a>
-        </div>
-        <div class="col-xs-6">
-          <input id="lastInspection" name="lastInspection" ng-model="vm.lastInspection" ng-show="mod == 1" class="pull-left"/>
-        </div>
-        
-
-      </div>
+  <div class="row text-center" ng-init="mod=0">
+    <div class="col-sm-12">
+      <table class="table table-bordered table-responsive table-large" id="table" ng-show="vm.data">
+        <thead>
+          <tr>
+            <th>Most Recent Flight </th>
+            <td>{{vm.data.flight.fltDate}}</td>
+          </tr>
+          <tr>
+            <th>Current Hobbs </th>
+            <td>{{vm.data.flight.hobbsIn}} Hours</td>
+          </tr>
+          <tr>
+            <th>Current Fuel </th>
+            <td>{{ vm.data.flight.fuelIn }} Quarts</td>
+          </tr>
+          <tr>
+            <th>Hours Since Last Oil Change </th>
+            <td>{{ vm.data.flight.hoursLastOilChange }}</td>
+          </tr>
+          <tr ng-show="mod == 0">
+            <th>Last Inspection Date </th>
+            <td><a class="btn btn-default" ng-click="mod = 1" >{{ vm.lastInspection }}</a></td>
+          </tr>
+          <tr ng-show="mod == 1">
+            <th><a class="btn btn-default" ng-click="mod=0" ng-show="mod == 1">Update Inspection Date : </a></th>
+            <td><input id="lastInspection" name="lastInspection" ng-model="vm.lastInspection" ng-show="mod == 1"/></td>
+          </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+        </tbody>
+      </table>
     </div>
+  </div>
+
   <footer-generic></footer-generic>
 </div>
