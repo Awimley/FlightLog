@@ -127,6 +127,7 @@ module.exports.findOne = function (req, res) {
 };
 
 //AUTHENTICATION==========================================================================================================================
+//In DB, user is ALWAYS stored lowercase
 
 module.exports.tryLogin = function (req, res) {
   //credentials in req.body
@@ -138,7 +139,7 @@ module.exports.tryLogin = function (req, res) {
         token : {}
       };
 
-  User.findOne({ user : req.body.user}, function (err, user) {
+  User.findOne({ user : req.body.user.toLowerCase()}, function (err, user) {
     if (err) { 
       console.log(err);
       sendJsonResponse(res, 400, err);
@@ -166,7 +167,7 @@ module.exports.tryLogin = function (req, res) {
 };
 
 module.exports.verifyUser = function (req, res) {
-  User.findOne({ user : req.body.user}, function (err, user) {
+  User.findOne({ user : req.body.user.toLowerCase()}, function (err, user) {
     var response = false;
     //Returns true or false
     if (err) { 

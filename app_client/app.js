@@ -5,7 +5,7 @@ angular.module('flightApp',['ngRoute', 'ngSanitize', 'ui.bootstrap', 'LocalStora
 config.$inject = ['$routeProvider', '$locationProvider', 'localStorageServiceProvider'];
 function config ($routeProvider, $locationProvider, localStorageServiceProvider) {
 
-  $routeProvider 
+  $routeProvider
   .when('/', {
       templateUrl: 'login/login.view.html',
       controller: 'loginCtrl',
