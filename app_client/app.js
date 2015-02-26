@@ -29,7 +29,7 @@ function config ($routeProvider, $locationProvider, localStorageServiceProvider)
     //Configure local storage
     localStorageServiceProvider
       .setStorageType('localStorage');
-  }
+}
 
 angular
   .module('flightApp')
