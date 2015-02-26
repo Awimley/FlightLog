@@ -20,7 +20,6 @@
   flightData.flightData()
     .success(function (data) {
       vm.data = {flight : data[data.length -1]};
-      $log.debug(vm.data.flight)
     })
     .error(function (e) {
       console.log(e);

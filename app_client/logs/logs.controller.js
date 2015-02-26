@@ -3,8 +3,8 @@
     .module('flightApp')
     .controller('logsCtrl', logsCtrl);
 
-  logsCtrl.$inject = ['$routeParams', '$modal', '$scope', 'flightData', '$log'];
-  function logsCtrl($routeParams, $modal, $scope, flightData, $log) {
+  logsCtrl.$inject = ['$routeParams', '$modal', '$scope', 'flightData', '$log', '$timeout'];
+  function logsCtrl($routeParams, $modal, $scope, flightData, $log, $timeout) {
 
     var vm = this;
 
@@ -42,18 +42,20 @@
           }
         });
         modalInstance.result.then(function (data) {
-          flightData.flightData()
-          .success(function (data) {
-            vm.data = {flights : data.reverse()};
-          })
-          .error(function (e) {
-            $log.debug(e);
-          });
+          $timeout(function() {
+            flightData.flightData()
+            .success(function (data) {
+              vm.data = { flights : data.reverse() };
+            })
+            .error(function (e) {
+              $log.debug(e);
+            });
+          }, 600);
         });
       })
       .error(function(err) {
         $log.debug(err);
-      })
+      });
     };
 
     //Add form from navigation directive
@@ -70,16 +72,17 @@
           }
         }
       });
-      modalInstance.result.then(function () {
-        flightData.flightData()
-        .success(function (data) {
-          vm.data = {flights : data.reverse()};
-        })
-        .error(function (e) {
-          $log.debug(e);
-        });
+      modalInstance.result.then(function (data) {
+        $timeout(function() {
+          flightData.flightData()
+          .success(function (data) {
+            vm.data = { flights : data.reverse() };
+          })
+          .error(function (e) {
+            $log.debug(e);
+          });
+        }, 600);        
       });
     };
-
   }
 })();
