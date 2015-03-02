@@ -3,10 +3,11 @@
     .module('flightApp')
     .controller('logsCtrl', logsCtrl);
 
-  logsCtrl.$inject = ['$routeParams', '$modal', '$scope', 'flightData', '$log', '$timeout'];
-  function logsCtrl($routeParams, $modal, $scope, flightData, $log, $timeout) {
+  logsCtrl.$inject = ['$routeParams', '$modal', '$scope', 'flightData', '$log', '$timeout', 'localStorageService'];
+  function logsCtrl($routeParams, $modal, $scope, flightData, $log, $timeout, localStorageService) {
 
     var vm = this;
+    vm.token = localStorageService.cookie.get('token');
 
     //Date stuff
     var date = new Date();

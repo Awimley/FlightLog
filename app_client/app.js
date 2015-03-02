@@ -17,7 +17,7 @@ function config ($routeProvider, $locationProvider, localStorageServiceProvider)
       controllerAs: 'vm'
     })
     .when('/logs', {
-      templateUrl: 'common/views/logs.view.html',
+      templateUrl: 'logs/logs.view.html',
       controller: 'logsCtrl',
       controllerAs: 'vm'
     })

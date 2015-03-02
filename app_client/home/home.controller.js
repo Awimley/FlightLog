@@ -4,14 +4,17 @@
     .module('flightApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$modal', '$scope', 'flightData', '$log'];
-  function homeCtrl ($modal, $scope, flightData, $log) {
+  homeCtrl.$inject = ['$modal', '$scope', 'flightData', '$log', 'localStorageService'];
+  function homeCtrl ($modal, $scope, flightData, $log, localStorageService) {
     var vm = this;
     vm.lastInspection = 'December 2015';
     vm.pageHeader = {
       title : 'N562D App (angular edition!)',
       strapline: ''
     };
+    vm.token = localStorageService.cookie.get('token');
+
+    //GREATEST RAPPER EVER
     var date = new Date();
     date = date.toISOString();
     date = date.slice(5,7) + '/' + date.slice(8,10) + '/' + date.slice(2,4);

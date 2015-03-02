@@ -11,3 +11,48 @@
 
 p { font-size : 190% }
 .table-large { font-size : 130% }
+.logs {
+  height: 50px;
+}
+.datebutton {
+  margin : 0;
+  border : 0;
+  padding : 0;
+  padding-top: 4px;
+  height : 100%;
+  width : 100%;
+  font-size : 90%;
+}
+td {
+  padding : 0;
+  border : 0;
+  margin : 0;
+}
+#navbar-main {
+  padding : 0;
+  border : 0;
+  margin : 0;
+  padding-top: 10px;
+}
+.navi {
+  color : rgb(0,0,0);
+  opacity : 0.55;
+}
+.navi:hover {
+  color : rgb(0,0,0);
+  opacity : 1;
+  background-color : #D3D3D3;
+}
+tr:hover {
+  background-color : #D3D3D3;
+}
+.containing-area {
+  float : top;
+  height : 500px;
+  width : 1200px;
+  padding : 3px;
+}
+.scroll-area {
+  height: 450px;
+  overflow: auto;
+}
